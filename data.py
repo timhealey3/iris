@@ -7,8 +7,8 @@ class IrisDataset(Dataset):
     def __init__(self, transform=None, target_transform=None):
         # Load the Iris dataset from scikit-learn
         self.data_set = load_iris()
-        self.data = torch.from_numpy(self.data_set.data)
-        self.labels = torch.from_numpy(self.data_set.target)
+        self.data = torch.from_numpy(self.data_set.data).to(torch.float64)
+        self.labels = torch.from_numpy(self.data_set.target).to(torch.long)
 
     def __len__(self):
         return len(self.labels)

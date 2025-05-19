@@ -3,17 +3,18 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from data import IrisDataset
 from torch.utils.data import random_split
-from model import NeuralNetwork
+from linear_model import LinearNeuralNetwork
+from non_linear_model import NonLinearNeuralNetwork
 
 class ModelTrainer:
-    def __init__(self, epochs, learning_rate):
+    def __init__(self, model, epochs, learning_rate):
         # Device configuration
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         print(f"Using device: {self.device}")
         
         # load data & model
         self.data = IrisDataset(device=self.device)
-        self.model = NeuralNetwork().to(self.device)
+        self.model = model.to(self.device)
 
         # split training, testing 70, 30
         self.train_size = int(0.7 * len(self.data))
@@ -67,6 +68,7 @@ class ModelTrainer:
         print(f"Test accuracy: {accuracy:.4f}\n")
 
 if __name__ == "__main__":
-    trainer = ModelTrainer(epochs=100, learning_rate=0.01)
+    model = NonLinearNeuralNetwork()
+    trainer = ModelTrainer(model=model, epochs=100, learning_rate=0.01)
     trainer.training()
     trainer.testing()

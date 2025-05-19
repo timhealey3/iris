@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 
-class NeuralNetwork(nn.Module):
+class LinearNeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
         # generate random weights and biases
@@ -23,7 +23,7 @@ class NeuralNetwork(nn.Module):
 
     # Add bias to each data set in batch
     # This is less efficient than python addition but I wanted to implement it manually
-    def addBias(self, x):
+    def addBias(self, x):   
         z = torch.zeros(x.shape[0], self.bias.shape[0], dtype=torch.float64, device=x.device)
         # iterates over each data set in batch
         for i in range(x.shape[0]):

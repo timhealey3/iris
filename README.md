@@ -10,7 +10,7 @@ Data is loaded using torch.utils.data.Dataset and torch.utils.data.DataLoader. T
 ## Training
 Training is done using torch.optim.Adam. The loss is calculated using torch.nn.CrossEntropyLoss as there are 3 possible outputs.
 
-## How it works
+## Linear Model
 Input: 4 features (sepal length, sepal width, petal length, petal width)
 
 Data that is passed in the model, we do matrix multiplication with the weights and add the bias.
@@ -19,3 +19,5 @@ When training, we calculate the loss, use backpropagation to compute gradients, 
 
 Output: 3 possible classes (setosa, versicolor, virginica)
 
+## Non Linear Model
+Three hidden layers with 16, 8, and 3 neurons. Uses ReLU activation function.

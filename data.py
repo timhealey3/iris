@@ -4,16 +4,19 @@ import torch
 import numpy as np
 
 class IrisDataset(Dataset):
-    def __init__(self, transform=None, target_transform=None):
+    def __init__(self, device=None, transform=None, target_transform=None):
         # Load the Iris dataset from scikit-learn
         self.data_set = load_iris()
         self.data = torch.from_numpy(self.data_set.data).to(torch.float64)
         self.labels = torch.from_numpy(self.data_set.target).to(torch.long)
+        self.device = device if device is not None else torch.device('cpu')
+        
+        # Move data to device
+        self.data = self.data.to(self.device)
+        self.labels = self.labels.to(self.device)
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        data_idx = self.data[idx]
-        label_idx = self.labels[idx]
-        return data_idx, label_idx
+        return self.data[idx], self.labels[idx]

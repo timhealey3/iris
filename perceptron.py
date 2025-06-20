@@ -31,6 +31,7 @@ class Perceptron:
     
     """predict binary classifier"""
     def predict(self, X):
+        # return 1 if true 0 if false
         return np.where(self.net_input(X) >= 0.0, 1, 0)
     
 """Sepal length, Pedal Length = Class Setosa/Veriscolor works in a perceptron because the two classes can be seeperated by a linear hyperplane"""

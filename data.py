@@ -1,7 +1,6 @@
 from sklearn.datasets import load_iris
-from torch.utils.data import Dataset, random_split, Subset
+from torch.utils.data import Dataset
 import torch
-import numpy as np
 
 class IrisDataset(Dataset):
     def __init__(self, device=None, transform=None, target_transform=None):
